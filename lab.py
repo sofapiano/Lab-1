@@ -1,6 +1,6 @@
 import time
 
-def draw_line_с(offset=0, color=222):
+def draw_line_c(offset=0, color=222):
     print(f'{"   " * offset}\x1b[48;5;{color}m{"   "}\x1b[0m{"   " * (4-offset*2)}\x1b[48;5;{color}m{"   "}\x1b[0m{"   " * offset}' * 2)
 
 def draw_line(offset=0, color=222, length=1):
@@ -13,9 +13,9 @@ def circles():
     step = 1
     color = 255
     for line in range(height-1):
-        draw_line_с(offset, color)
+        draw_line_c(offset, color)
         if line == center:
-            draw_line_с(offset, color)
+            draw_line_c(offset, color)
             offset += step
         elif line < center:
             offset -= step
@@ -36,6 +36,7 @@ print(red * 5)
 if __name__ == '__main__':
     circles()
 
+#график
 print('если принять 6 клеточек (1 клеточка = 3 пробела в ширину) за единицу:')
 for i in range(9):
     draw_line(9*3-i*3, 1, 3)
