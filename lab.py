@@ -23,20 +23,35 @@ def circles():
             offset += step
 
 
-#страна
-red = f"\x1b[48;5;{1}m{' ' * 3}\x1b[0m"
-white = f"\x1b[48;5;{255}m{' ' * 3}\x1b[0m"
-print(red * 5)
-print(red * 2 + white + red * 2)
-print(red + white * 3 + red)
-print(red * 2 + white + red * 2)
-print(red * 5)
-
-#узор
 if __name__ == '__main__':
-    circles()
+    #страна
+    red = f"\x1b[48;5;{1}m{' ' * 3}\x1b[0m"
+    white = f"\x1b[48;5;{255}m{' ' * 3}\x1b[0m"
+    print(red * 5)
+    print(red * 2 + white + red * 2)
+    print(red + white * 3 + red)
+    print(red * 2 + white + red * 2)
+    print(red * 5)
+    print()
 
-#график
-print('если принять 6 клеточек (1 клеточка = 3 пробела в ширину) за единицу:')
-for i in range(9):
-    draw_line(9*3-i*3, 1, 3)
+    #узор
+    circles()
+    print()
+
+    #график
+    print('если принять 6 клеточек (1 клеточка = 3 пробела в ширину) за единицу:')
+    for i in range(9):
+        draw_line(9*3-i*3, 1, 3)
+
+    #диаграмма
+    with open("sequence.txt") as data:
+        data = [float(num) for num in data.readlines()]
+        yes = 0
+        for num in data:
+            if -3 <= num <= 3:
+                yes += 1
+        print("yes")
+        line, line_n = " " * yes, " " * (len(data)-yes)
+        print(f'\x1b[48;5;{1}m{line}\x1b[0m')
+        print("no")
+        print(f'\x1b[48;5;{1}m{line_n}\x1b[0m')
