@@ -1,7 +1,10 @@
 import time
+import os
 
 def draw_line_c(offset=0, color=222):
-    print(f'{"   " * offset}\x1b[48;5;{color}m{"   "}\x1b[0m{"   " * (4-offset*2)}\x1b[48;5;{color}m{"   "}\x1b[0m{"   " * offset}' * 2)
+    print(f'{"   " * offset}\x1b[48;5;{color}m{"   "}\x1b[0m'
+          f'{"   " * (4-offset*2)}\x1b[48;5;{color}m{"   "}\x1b[0m'
+          f'{"   " * offset}' * 2)
 
 def draw_line(offset=0, color=222, length=1):
     line = '   ' * length
@@ -21,17 +24,22 @@ def circles():
             offset -= step
         else:
             offset += step
+    
 
-
-if __name__ == '__main__':
-    #страна
-    red = f"\x1b[48;5;{1}m{' ' * 3}\x1b[0m"
+def country_flag(color):
+    red = f"\x1b[48;5;{color}m{' ' * 3}\x1b[0m"
     white = f"\x1b[48;5;{255}m{' ' * 3}\x1b[0m"
     print(red * 5)
     print(red * 2 + white + red * 2)
     print(red + white * 3 + red)
     print(red * 2 + white + red * 2)
     print(red * 5)
+    print()
+
+
+if __name__ == '__main__':
+    #страна
+    country_flag(1)
     print()
 
     #узор
@@ -55,5 +63,16 @@ if __name__ == '__main__':
         print(f'\x1b[48;5;{1}m{line}\x1b[0m')
         print("no", len(data) - yes)
         print(f'\x1b[48;5;{1}m{line_n}\x1b[0m')
-    #почему-то диаграмма отображается, если поставить брейкпоинты на 54, 55 и 
-    # 57 строки и запустить дебаггер. хз считается ли это за норм ответ, но что есть то есть
+    #почему-то диаграмма отображается, только если поставить брейкпоинты на 62, 63 и 
+    # 65 строки и запустить дебаггер. хз считается ли это за норм ответ, но что есть то есть
+
+    for i in range(9):
+        print()
+
+    #анимация
+    colors = [1, 4, 5]
+    while True:
+        for color in colors:
+            country_flag(color)
+            time.sleep(2)
+            os.system("cls")
