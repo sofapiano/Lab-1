@@ -50,8 +50,10 @@ if __name__ == '__main__':
         for num in data:
             if -3 <= num <= 3:
                 yes += 1
-        print("yes")
-        line, line_n = " " * yes, " " * (len(data)-yes)
+        print("yes", yes)
+        line, line_n = " " * (yes//2), " " * ((len(data)-yes)//2)
         print(f'\x1b[48;5;{1}m{line}\x1b[0m')
-        print("no")
+        print("no", len(data) - yes)
         print(f'\x1b[48;5;{1}m{line_n}\x1b[0m')
+    #почему-то диаграмма отображается, если поставить брейкпоинты на 54, 55 и 
+    # 57 строки и запустить дебаггер. хз считается ли это за норм ответ, но что есть то есть
